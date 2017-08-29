@@ -158,19 +158,21 @@ export default class Autocomplete extends Component {
 
   handleComponentBlur (newState) {
     const { options, query, selected } = this.state
-    let newQuery
+    let newQuery, setStateCallback
+
     if (this.props.confirmOnBlur) {
       newQuery = newState.query || query
-      this.props.onConfirm(options[selected])
+      setStateCallback = this.props.onConfirm(options[selected])
     } else {
       newQuery = query
+      setStateCallback = () => {}
     }
     this.setState({
       focused: null,
       menuOpen: newState.menuOpen || false,
       query: newQuery,
       selected: null
-    })
+    }, setStateCallback)
   }
 
   handleOptionBlur (event, index) {
@@ -266,13 +268,12 @@ export default class Autocomplete extends Component {
   handleOptionClick (event, index) {
     const selectedOption = this.state.options[index]
     const newQuery = this.templateInputValue(selectedOption)
-    this.props.onConfirm(selectedOption)
     this.setState({
       focused: -1,
       menuOpen: false,
       query: newQuery,
       selected: -1
-    })
+    }, this.props.onConfirm(selectedOption))
   }
 
   handleOptionMouseDown (event) {
