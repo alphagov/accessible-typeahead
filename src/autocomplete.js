@@ -96,7 +96,7 @@ export default class Autocomplete extends Component {
   }
 
   isQueryAnOption (query, options) {
-    return options.some(entry => (this.templateInputValue(entry) || "").toLowerCase() === query.toLowerCase())
+    return options.some(entry => (this.templateInputValue(entry) || '').toLowerCase() === query.toLowerCase())
   }
 
   componentDidMount () {
