@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [Pull request #500: Fix AXE error: Input fields must have accessible name](https://github.com/alphagov/accessible-autocomplete/pull/500)
+
 ## 2.0.3 - 2020-07-01
 
 ### Fixes
